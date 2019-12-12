@@ -110,3 +110,6 @@ dmypy.json
 reset2.txt
 
 # End of https://www.gitignore.io/api/python
+
+#깃에서 관리 할 필요 없음 
+venv/
