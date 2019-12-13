@@ -93,6 +93,8 @@ def godmademe():
     c = random.choice(third_list)
     return render_template('godmademe.html', first_list = a , second_list = b, third_list = c)
 
+
+
 if __name__=="__main__":
     app.run(debug=True)
 
