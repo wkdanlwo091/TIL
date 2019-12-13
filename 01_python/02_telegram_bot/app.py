@@ -53,6 +53,17 @@ def telegram():
             papago_res = requests.post('https://openapi.naver.com/v1/papago/n2mt', headers=headers, data=data)
             text = papago_res.json().get('message').get('result').get('translatedText')
 
+        if text[0:4] =='/로또 ':
+            num = text[4:]
+            res = requests.get('https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=888')
+            lotto = res.json()
+            winner = []
+            for i in range(1, 7):
+                winner.append(lotto[f'drwtNo{i}'])
+            bonus_num = lotto['bnusNo']
+            text = f'{num}회차 로또 당첨번호는 {winner}입니다.'
+        ##/영한
+        ##/한영
         requests.get(f'{base}/bot{token}/sendMessage?chat_id={chat_id}&text={text}')
 
     return '', 200
@@ -61,3 +72,4 @@ def telegram():
 #ngrok를 cmd창에서 켰을 때, 끄지말것(해쉬값이 바뀜)
 #ngrok : 사용자의 데이터(값)을 받아올 때, 방화벽에 막히지 않도록 알려주는 기능
 #webhook: 이벤트가 발생했다는 것을 알려줌
+
