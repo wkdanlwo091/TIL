@@ -84,9 +84,14 @@ def vonvon(name):
 @app.route('/godmademe')
 def godmademe():
     name = request.args.get('name')
+    print(name)
     first_list = ['잘생김', '못생김', '어중간']
     second_list = ['착함', '나쁨', '어중간']
     third_list = ['강함', '약함', '어중간']
+    a = random.choice(first_list)
+    b = random.choice(second_list)
+    c = random.choice(third_list)
+    return render_template('godmademe.html', first_list = a , second_list = b, third_list = c)
 
 if __name__=="__main__":
     app.run(debug=True)
